@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>MQTT humidities</title>
+        <script src="{{ url_for('static', filename='jquery-1.8.3.min.js') }}"></script>
+        <script type="text/javascript">
+        $(function () {
+            $.getJSON('http://192.168.2.201:5000/humidities.json', function (humidities_data) {
+                // Create the chart
+                $('#container').highcharts('StockChart', {
+                    rangeSelector : {
+                        selected : 1
+                    },
+                    title : {
+                        text : 'Humidities'
+                    },
+                    xAxis: {
+                        type: 'datetime',
+                    },
+                    series : [{
+                        name : 'OG/h',
+                        data : humidities_data.results1,
+                        tooltip: {
+                            valueDecimals: 2
+                        }
+                    },
+                    {
+                        name : 'EG/h',
+                        data : humidities_data.results2,
+                        tooltip: {
+                            valueDecimals: 2
+                        }
+                    },
+                    {
+                        name : 'UG/h',
+                        data : humidities_data.results3,
+                        tooltip: {
+                            valueDecimals: 2
+                        }
+                    }]
+                });
+            });
+        });
+        </script>
+    </head>
+    <body>
+<script src="{{ url_for('static', filename='highstock.js') }}"></script>
+<script src="{{ url_for('static', filename='highcharts-more.js') }}"></script>
+<script src="{{ url_for('static', filename='exporting.js') }}"></script>
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+ 
+    </body>
+</html>
