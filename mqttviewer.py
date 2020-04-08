@@ -10,11 +10,11 @@ HOST_IP = "192.168.2.201"
 def data():
     connection = sqlite3.connect(DB_PATH)
     cursor = connection.cursor()
-    cursor.execute("select CAST(strftime('%s',timestamp) AS INT)*1000, value from table_data where topic='room/OG/t'")
+    cursor.execute("select CAST(strftime('%s',timestamp) AS INT)*1000, value from table_data where topic='room/OG/gas'")
     results1 = cursor.fetchall()
-    cursor.execute("select CAST(strftime('%s',timestamp) AS INT)*1000, value from table_data where topic='room/EG/t'")
+    cursor.execute("select CAST(strftime('%s',timestamp) AS INT)*1000, value from table_data where topic='room/OG/pressure'")
     results2 = cursor.fetchall()
-    cursor.execute("select CAST(strftime('%s',timestamp) AS INT)*1000, value from table_data where topic='room/UG/t'")
+    cursor.execute("select CAST(strftime('%s',timestamp) AS INT)*1000, value from table_data where topic='room/consumption'")
     results3 = cursor.fetchall()
     #print results
     return json.dumps({'results1': results1, 'results2': results2, 'results3': results3})
@@ -45,6 +45,20 @@ def temperatures_data():
     #print results
     return json.dumps({'results1': results1, 'results2': results2, 'results3': results3})
 
+@app.route("/garden.json")
+def garden_data():
+    connection = sqlite3.connect(DB_PATH)
+    cursor = connection.cursor()
+    cursor.execute("select CAST(strftime('%s',timestamp) AS INT)*1000, value from table_data where topic='garden/temperature'")
+    results1 = cursor.fetchall()
+    cursor.execute("select CAST(strftime('%s',timestamp) AS INT)*1000, value from table_data where topic='garden/humidity'")
+    results2 = cursor.fetchall()
+    cursor.execute("select CAST(strftime('%s',timestamp) AS INT)*1000, value from table_data where topic='garden/moisture'")
+    results3 = cursor.fetchall()
+    #print results
+    return json.dumps({'results1': results1, 'results2': results2, 'results3': results3})
+
+
 @app.route("/graph")
 def graph():
     return render_template('graph.html')
@@ -56,6 +70,11 @@ def temperatures():
 @app.route("/humidities")
 def humidities():
     return render_template('humidities.html')
+
+@app.route("/garden")
+def garden():
+    return render_template('garden.html')
+
 
 if __name__ == '__main__':
     app.run(

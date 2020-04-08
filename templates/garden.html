@@ -2,39 +2,39 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>Highstock Example</title>
+        <title>MQTT garden</title>
         <script src="{{ url_for('static', filename='jquery-1.8.3.min.js') }}"></script>
         <script type="text/javascript">
         $(function () {
-            $.getJSON('http://192.168.2.201:5000/data.json', function (data) {
+            $.getJSON('http://192.168.2.201:5000/garden.json', function (garden_data) {
                 // Create the chart
                 $('#container').highcharts('StockChart', {
                     rangeSelector : {
                         selected : 1
                     },
                     title : {
-                        text : 'temperatures'
+                        text : 'Garden'
                     },
                     xAxis: {
                         type: 'datetime',
                     },
                     series : [{
-                        name : 'OG/gas',
-                        data : data.results1,
+                        name : 'garden/t',
+                        data : garden_data.results1,
                         tooltip: {
                             valueDecimals: 2
                         }
                     },
                     {
-                        name : 'UG/pressure',
-                        data : data.results2,
+                        name : 'garden/h',
+                        data : garden_data.results2,
                         tooltip: {
                             valueDecimals: 2
                         }
                     },
                     {
-                        name : 'consumption',
-                        data : data.results3,
+                        name : 'garden/moisture',
+                        data : garden_data.results3,
                         tooltip: {
                             valueDecimals: 2
                         }
