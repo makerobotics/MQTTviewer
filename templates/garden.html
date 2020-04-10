@@ -18,6 +18,25 @@
                     xAxis: {
                         type: 'datetime',
                     },
+                    yAxis: [{ // Primary yAxis
+                        labels: {
+                            format: '{value}°C/%H'
+                        },
+                        title: {
+                            text: 'Temperature/Humidity'
+                        },
+                        opposite: false
+                    }, 
+                    { // Secondary yAxis
+                        gridLineWidth: 0,
+                        title: {
+                            text: 'Moisture'
+                        },
+                        labels: {
+                            format: '{value} mV'
+                        },
+                        opposite: true
+                    }],
                     series : [{
                         name : 'garden/t',
                         data : garden_data.results1,
@@ -35,6 +54,7 @@
                     {
                         name : 'garden/moisture',
                         data : garden_data.results3,
+                        yAxis : 1,
                         tooltip: {
                             valueDecimals: 2
                         }
