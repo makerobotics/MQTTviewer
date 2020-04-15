@@ -20,14 +20,23 @@
                     },
                     yAxis: [{ // Primary yAxis
                         labels: {
-                            format: '{value}°C/%H'
+                            format: '{value}°C'
                         },
                         title: {
-                            text: 'Temperature/Humidity'
+                            text: 'Temperature'
+                        },
+                        opposite: false
+                    },
+                    { // Secondary yAxis
+                        labels: {
+                            format: '{value}%H'
+                        },
+                        title: {
+                            text: 'Humidity'
                         },
                         opposite: false
                     }, 
-                    { // Secondary yAxis
+                    { // Third yAxis
                         gridLineWidth: 0,
                         title: {
                             text: 'Moisture'
@@ -47,6 +56,7 @@
                     {
                         name : 'garden/h',
                         data : garden_data.results2,
+                        yAxis: 1,
                         tooltip: {
                             valueDecimals: 2
                         }
@@ -54,7 +64,7 @@
                     {
                         name : 'garden/moisture',
                         data : garden_data.results3,
-                        yAxis : 1,
+                        yAxis : 2,
                         tooltip: {
                             valueDecimals: 2
                         }
