@@ -18,15 +18,46 @@
                     xAxis: {
                         type: 'datetime',
                     },
+                    yAxis: [{ // Primary yAxis
+                        labels: {
+                            format: '{value}Ohms'
+                        },
+                        title: {
+                            text: 'Gas index'
+                        },
+                        opposite: false
+                    }, 
+                    { // Secondary yAxis
+                        gridLineWidth: 0,
+                        title: {
+                            text: 'Pressure'
+                        },
+                        labels: {
+                            format: '{value} mbar'
+                        },
+                        opposite: false
+                    }, 
+                    { // Third yAxis
+                        gridLineWidth: 0,
+                        title: {
+                            text: 'Consumption'
+                        },
+                        labels: {
+                            format: '{value} Watt'
+                        },
+                        opposite: true
+                    }],
                     series : [{
                         name : 'Gas index',
                         data : data.results1,
+                        yAxis: 0,
                         tooltip: {
                             valueDecimals: 2
                         }
                     },
                     {
                         name : 'Pressure',
+                        yAxis: 1,
                         data : data.results2,
                         tooltip: {
                             valueDecimals: 2
@@ -34,7 +65,9 @@
                     },
                     {
                         name : 'consumption',
+                        type: 'column',
                         data : data.results3,
+                        yAxis: 2,
                         tooltip: {
                             valueDecimals: 2
                         }
