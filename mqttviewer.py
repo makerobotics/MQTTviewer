@@ -14,7 +14,7 @@ def data():
     results1 = cursor.fetchall()
     cursor.execute("select CAST(strftime('%s',timestamp) AS INT)*1000, value from table_data where topic='room/OG/pressure'")
     results2 = cursor.fetchall()
-    cursor.execute("select CAST(strftime('%s',timestamp) AS INT)*1000, value from table_data where topic='room/consumption'")
+    cursor.execute("select CAST(strftime('%s',timestamp) AS INT)*1000, value from table_data where topic='global/consumption'")
     results3 = cursor.fetchall()
     #print results
     return json.dumps({'results1': results1, 'results2': results2, 'results3': results3})
@@ -77,8 +77,11 @@ def garden():
 
 
 if __name__ == '__main__':
-    app.run(
-    debug = True,
-    threaded = True,
-    host = HOST_IP
-)
+    try:
+        app.run(
+        debug = True,
+        threaded = True,
+        host = HOST_IP
+        )
+    except KeyboardInterrupt:
+        print "Exiting"

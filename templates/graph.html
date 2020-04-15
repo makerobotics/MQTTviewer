@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>Highstock Example</title>
+        <title>Global records</title>
         <script src="{{ url_for('static', filename='jquery-1.8.3.min.js') }}"></script>
         <script type="text/javascript">
         $(function () {
@@ -13,20 +13,20 @@
                         selected : 1
                     },
                     title : {
-                        text : 'temperatures'
+                        text : 'globals'
                     },
                     xAxis: {
                         type: 'datetime',
                     },
                     series : [{
-                        name : 'OG/gas',
+                        name : 'Gas index',
                         data : data.results1,
                         tooltip: {
                             valueDecimals: 2
                         }
                     },
                     {
-                        name : 'UG/pressure',
+                        name : 'Pressure',
                         data : data.results2,
                         tooltip: {
                             valueDecimals: 2
