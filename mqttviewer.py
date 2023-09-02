@@ -84,4 +84,4 @@ if __name__ == '__main__':
         host = HOST_IP
         )
     except KeyboardInterrupt:
-        print "Exiting"
+        print("Exiting")
